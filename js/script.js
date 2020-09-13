@@ -60,17 +60,42 @@ calcular1.addEventListener('click', function (e) {
 // Rectángulo
 // Clase con atributos
 function Rectangulo (base,altura) {
-    this.base = base;
-    this.altura = altura;
+    this._base = function () {
+        return base;
+    };
+    this._altura = function () {
+        return altura;
+    };
 }
+
+//Getters
+Rectangulo.prototype.getBase = function () {
+    return this._base();
+};
+Rectangulo.prototype.getAltura = function () {
+    return this._altura();
+};
+
+// Setters
+Rectangulo.prototype.setBase = function (nuve_base) {
+    this._base = function () {
+         return nuve_base;
+    };
+};
+Rectangulo.prototype.setAltura = function (nuve_altura) {
+    this._altura = function () {
+         return nuve_altura;
+    };
+};
+
 
 // Métodos para la clase
 Rectangulo.prototype.calcularPerimetro = function () {
-    return 2 * (this.base + this.altura);
+    return 2 * (this.getBase() + this.getAltura());
 }
 
 Rectangulo.prototype.calcularArea = function () {
-    return this.base * this.altura;
+    return this.getBase() * this.getAltura();
 }
 
 let calcular2 = document.getElementById('calcular2');
